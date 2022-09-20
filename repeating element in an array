@@ -1,0 +1,46 @@
+// Getting input via STDIN
+const readline = require("readline");
+
+const inp = readline.createInterface({
+  input: process.stdin
+});
+
+const userInput = [];
+
+inp.on("line", (data) => {
+  userInput.push(data);
+});
+
+inp.on("close", () => {
+ // given array is assign to arr variable
+ let arr=[3, 'q', 'q', 'q', 2, 3, 'q', 3, 'q', 2, 4, 9, 3];
+ //declare a variable maxCount which will assign the maximum number of counts of a element;
+ let maxCount=0;
+  //declare a variable maxElement which will assign the maximum element which has maximum number of counts;
+ let maxElement=0;
+
+//lets iterate the array using for-loop to compare with other elements;
+ for (let i=0; i<arr.length; i++){
+//declare a variable count 
+      let count=1;
+//to compare the elements we should access other elements also so that we again iterate tha array from the index i+1, so that we compare arr[i] with arr[j]
+//here arr[0] is compared to arr[j] till the last element and then arr[1] will compared to arr[j] and the ieteration continues.....
+ for (let j= i+1; j<arr.length ; j++){
+//here we assign a condition that if arr[i]===arr[j] will increament the count, if condition not satisfied increament will not happen;
+//if an element is repeating n number of times, count will also get increament for n numberof times
+      if (arr[i]===arr[j]){
+//increament operation
+         count++;
+     }
+ }
+ //here we assign a condition,if the count is max, count value will assign to maxCount which we want count as output and that element which is repeating also assign to maxElement,
+ //so that we know count is increamenting because of repeating elements.
+     if (count>maxCount){
+         maxCount=count;
+         maxElement=arr[i];
+     }
+
+ }
+ // printing the maxElement and maxCount as per the required output format.
+console.log(maxElement+ " "+ "(" +" "+ maxCount +" "+"times"+" "+")" );
+ });
